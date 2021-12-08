@@ -14,5 +14,7 @@ commonLabels:
   app: ratel
 
 images:
+- name: /
+  newTag: dev-2021-12-08T15-39
 - name: 885406856042.dkr.ecr.us-east-1.amazonaws.com/cf-ecr-dev
   newTag: v1.1502431146
