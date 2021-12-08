@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ratel
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 5
+      maxUnavailable: 0
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: ratel
+  template:
+    metadata:
+      labels:
+        app: ratel
+      annotations:
+        cluster-autoscaler.kubernetes.io/safe-to-evict: 'true'
+    spec:
+      containers:
+      - name: ratel
+        image: 885406856042.dkr.ecr.us-east-1.amazonaws.com/cf-ecr-dev:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+      # serviceAccount: ratel
+      automountServiceAccountToken: true
